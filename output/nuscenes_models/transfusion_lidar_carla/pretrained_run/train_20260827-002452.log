@@ -1,0 +1,561 @@
+2026-08-27 00:24:52,824   INFO  **********************Start logging**********************
+2026-08-27 00:24:52,824   INFO  CUDA_VISIBLE_DEVICES=ALL
+2026-08-27 00:24:52,824   INFO  Training with a single process
+2026-08-27 00:24:52,824   INFO  cfg_file         cfgs/nuscenes_models/transfusion_lidar_carla.yaml
+2026-08-27 00:24:52,825   INFO  batch_size       4
+2026-08-27 00:24:52,825   INFO  epochs           6
+2026-08-27 00:24:52,825   INFO  workers          4
+2026-08-27 00:24:52,825   INFO  extra_tag        pretrained_run
+2026-08-27 00:24:52,825   INFO  ckpt             None
+2026-08-27 00:24:52,825   INFO  pretrained_model /workspace/OpenPCDet/pretrained/transfusion_lidar_nuscenes.pth
+2026-08-27 00:24:52,825   INFO  launcher         none
+2026-08-27 00:24:52,825   INFO  tcp_port         18888
+2026-08-27 00:24:52,825   INFO  sync_bn          False
+2026-08-27 00:24:52,825   INFO  fix_random_seed  False
+2026-08-27 00:24:52,825   INFO  ckpt_save_interval 1
+2026-08-27 00:24:52,825   INFO  local_rank       None
+2026-08-27 00:24:52,825   INFO  max_ckpt_save_num 30
+2026-08-27 00:24:52,825   INFO  merge_all_iters_to_one_epoch False
+2026-08-27 00:24:52,825   INFO  set_cfgs         None
+2026-08-27 00:24:52,825   INFO  max_waiting_mins 0
+2026-08-27 00:24:52,826   INFO  start_epoch      0
+2026-08-27 00:24:52,826   INFO  num_epochs_to_eval 0
+2026-08-27 00:24:52,826   INFO  save_to_file     False
+2026-08-27 00:24:52,826   INFO  use_tqdm_to_record False
+2026-08-27 00:24:52,826   INFO  logger_iter_interval 50
+2026-08-27 00:24:52,826   INFO  ckpt_save_time_interval 300
+2026-08-27 00:24:52,826   INFO  wo_gpu_stat      False
+2026-08-27 00:24:52,826   INFO  use_amp          False
+2026-08-27 00:24:52,826   INFO  cfg.ROOT_DIR: /workspace/OpenPCDet
+2026-08-27 00:24:52,826   INFO  cfg.LOCAL_RANK: 0
+2026-08-27 00:24:52,826   INFO  cfg.CLASS_NAMES: ['car', 'truck', 'bus', 'barrier', 'motorcycle', 'bicycle', 'pedestrian', 'traffic_cone']
+2026-08-27 00:24:52,826   INFO  ----------- DATA_CONFIG -----------
+2026-08-27 00:24:52,826   INFO  cfg.DATA_CONFIG.DATASET: NuScenesDataset
+2026-08-27 00:24:52,826   INFO  cfg.DATA_CONFIG.DATA_PATH: ../data/nuscenes
+2026-08-27 00:24:52,826   INFO  cfg.DATA_CONFIG.VERSION: v1.0-carla
+2026-08-27 00:24:52,826   INFO  cfg.DATA_CONFIG.MAX_SWEEPS: 10
+2026-08-27 00:24:52,826   INFO  cfg.DATA_CONFIG.PRED_VELOCITY: True
+2026-08-27 00:24:52,826   INFO  cfg.DATA_CONFIG.SET_NAN_VELOCITY_TO_ZEROS: True
+2026-08-27 00:24:52,826   INFO  cfg.DATA_CONFIG.FILTER_MIN_POINTS_IN_GT: 1
+2026-08-27 00:24:52,827   INFO  ----------- DATA_SPLIT -----------
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2026-08-27 00:24:52,827   INFO  ----------- INFO_PATH -----------
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.INFO_PATH.train: ['nuscenes_infos_10sweeps_train.pkl']
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.INFO_PATH.test: ['nuscenes_infos_10sweeps_val.pkl']
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.BALANCED_RESAMPLING: True
+2026-08-27 00:24:52,827   INFO  ----------- DATA_AUGMENTOR -----------
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'gt_sampling', 'DB_INFO_PATH': ['nuscenes_dbinfos_10sweeps_withvelo.pkl'], 'PREPARE': {'filter_by_min_points': ['car:5', 'truck:5', 'bus:5', 'barrier:5', 'motorcycle:5', 'bicycle:5', 'pedestrian:5', 'traffic_cone:5']}, 'SAMPLE_GROUPS': ['car:2', 'truck:3', 'bus:4', 'barrier:2', 'motorcycle:6', 'bicycle:6', 'pedestrian:2', 'traffic_cone:2'], 'NUM_POINT_FEATURES': 5, 'DATABASE_WITH_FAKELIDAR': False, 'REMOVE_EXTRA_WIDTH': [0.0, 0.0, 0.0], 'LIMIT_WHOLE_SCENE': True}, {'NAME': 'random_world_flip', 'ALONG_AXIS_LIST': ['x', 'y']}, {'NAME': 'random_world_rotation', 'WORLD_ROT_ANGLE': [-0.78539816, 0.78539816]}, {'NAME': 'random_world_scaling', 'WORLD_SCALE_RANGE': [0.9, 1.1]}, {'NAME': 'random_world_translation', 'NOISE_TRANSLATE_STD': [0.5, 0.5, 0.5]}]
+2026-08-27 00:24:52,827   INFO  ----------- POINT_FEATURE_ENCODING -----------
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity', 'timestamp']
+2026-08-27 00:24:52,827   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity', 'timestamp']
+2026-08-27 00:24:52,828   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': True}}, {'NAME': 'transform_points_to_voxels', 'VOXEL_SIZE': [0.075, 0.075, 0.2], 'MAX_POINTS_PER_VOXEL': 10, 'MAX_NUMBER_OF_VOXELS': {'train': 120000, 'test': 160000}}]
+2026-08-27 00:24:52,828   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/nuscenes_dataset_carla.yaml
+2026-08-27 00:24:52,828   INFO  ----------- MODEL -----------
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.NAME: TransFusion
+2026-08-27 00:24:52,828   INFO  ----------- VFE -----------
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.VFE.NAME: MeanVFE
+2026-08-27 00:24:52,828   INFO  ----------- BACKBONE_3D -----------
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.BACKBONE_3D.NAME: VoxelResBackBone8x
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.BACKBONE_3D.USE_BIAS: False
+2026-08-27 00:24:52,828   INFO  ----------- MAP_TO_BEV -----------
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.MAP_TO_BEV.NAME: HeightCompression
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.MAP_TO_BEV.NUM_BEV_FEATURES: 256
+2026-08-27 00:24:52,828   INFO  ----------- BACKBONE_2D -----------
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.BACKBONE_2D.NAME: BaseBEVBackbone
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.BACKBONE_2D.LAYER_NUMS: [5, 5]
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.BACKBONE_2D.LAYER_STRIDES: [1, 2]
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.BACKBONE_2D.NUM_FILTERS: [128, 256]
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.BACKBONE_2D.UPSAMPLE_STRIDES: [1, 2]
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.BACKBONE_2D.NUM_UPSAMPLE_FILTERS: [256, 256]
+2026-08-27 00:24:52,828   INFO  cfg.MODEL.BACKBONE_2D.USE_CONV_FOR_NO_STRIDE: True
+2026-08-27 00:24:52,829   INFO  ----------- DENSE_HEAD -----------
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.NAME: TransFusionHead
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.USE_BIAS_BEFORE_NORM: False
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.NUM_PROPOSALS: 200
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.HIDDEN_CHANNEL: 128
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.NUM_CLASSES: 8
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.NUM_HEADS: 8
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.NMS_KERNEL_SIZE: 3
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.FFN_CHANNEL: 256
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.DROPOUT: 0.1
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.BN_MOMENTUM: 0.1
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.ACTIVATION: relu
+2026-08-27 00:24:52,829   INFO  cfg.MODEL.DENSE_HEAD.NUM_HM_CONV: 2
+2026-08-27 00:24:52,829   INFO  ----------- SEPARATE_HEAD_CFG -----------
+2026-08-27 00:24:52,830   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_ORDER: ['center', 'height', 'dim', 'rot', 'vel']
+2026-08-27 00:24:52,830   INFO  ----------- HEAD_DICT -----------
+2026-08-27 00:24:52,830   INFO  ----------- center -----------
+2026-08-27 00:24:52,830   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.out_channels: 2
+2026-08-27 00:24:52,830   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.num_conv: 2
+2026-08-27 00:24:52,830   INFO  ----------- height -----------
+2026-08-27 00:24:52,830   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.height.out_channels: 1
+2026-08-27 00:24:52,830   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.height.num_conv: 2
+2026-08-27 00:24:52,830   INFO  ----------- dim -----------
+2026-08-27 00:24:52,830   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.out_channels: 3
+2026-08-27 00:24:52,830   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.num_conv: 2
+2026-08-27 00:24:52,830   INFO  ----------- rot -----------
+2026-08-27 00:24:52,830   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.out_channels: 2
+2026-08-27 00:24:52,830   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.num_conv: 2
+2026-08-27 00:24:52,830   INFO  ----------- vel -----------
+2026-08-27 00:24:52,830   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.vel.out_channels: 2
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.vel.num_conv: 2
+2026-08-27 00:24:52,831   INFO  ----------- TARGET_ASSIGNER_CONFIG -----------
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.FEATURE_MAP_STRIDE: 8
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.DATASET: nuScenes
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.GAUSSIAN_OVERLAP: 0.1
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.MIN_RADIUS: 2
+2026-08-27 00:24:52,831   INFO  ----------- HUNGARIAN_ASSIGNER -----------
+2026-08-27 00:24:52,831   INFO  ----------- cls_cost -----------
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.HUNGARIAN_ASSIGNER.cls_cost.gamma: 2.0
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.HUNGARIAN_ASSIGNER.cls_cost.alpha: 0.25
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.HUNGARIAN_ASSIGNER.cls_cost.weight: 0.15
+2026-08-27 00:24:52,831   INFO  ----------- reg_cost -----------
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.HUNGARIAN_ASSIGNER.reg_cost.weight: 0.25
+2026-08-27 00:24:52,831   INFO  ----------- iou_cost -----------
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.HUNGARIAN_ASSIGNER.iou_cost.weight: 0.25
+2026-08-27 00:24:52,831   INFO  ----------- LOSS_CONFIG -----------
+2026-08-27 00:24:52,831   INFO  ----------- LOSS_WEIGHTS -----------
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.cls_weight: 1.0
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.bbox_weight: 0.25
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.hm_weight: 1.0
+2026-08-27 00:24:52,831   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.2, 0.2]
+2026-08-27 00:24:52,832   INFO  ----------- LOSS_CLS -----------
+2026-08-27 00:24:52,832   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_CLS.use_sigmoid: True
+2026-08-27 00:24:52,832   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_CLS.gamma: 2.0
+2026-08-27 00:24:52,832   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_CLS.alpha: 0.25
+2026-08-27 00:24:52,832   INFO  ----------- POST_PROCESSING -----------
+2026-08-27 00:24:52,832   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.SCORE_THRESH: 0.0
+2026-08-27 00:24:52,832   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.POST_CENTER_RANGE: [-61.2, -61.2, -10.0, 61.2, 61.2, 10.0]
+2026-08-27 00:24:52,832   INFO  ----------- POST_PROCESSING -----------
+2026-08-27 00:24:52,832   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2026-08-27 00:24:52,832   INFO  cfg.MODEL.POST_PROCESSING.SCORE_THRESH: 0.1
+2026-08-27 00:24:52,832   INFO  cfg.MODEL.POST_PROCESSING.OUTPUT_RAW_SCORE: False
+2026-08-27 00:24:52,832   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: kitti
+2026-08-27 00:24:52,832   INFO  ----------- OPTIMIZATION -----------
+2026-08-27 00:24:52,832   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 4
+2026-08-27 00:24:52,832   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 6
+2026-08-27 00:24:52,832   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2026-08-27 00:24:52,832   INFO  cfg.OPTIMIZATION.LR: 0.001
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.BETAS: [0.9, 0.999]
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.MOMS: [0.9, 0.8052631]
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.PCT_START: 0.4
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2026-08-27 00:24:52,833   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 35
+2026-08-27 00:24:52,833   INFO  ----------- HOOK -----------
+2026-08-27 00:24:52,833   INFO  ----------- DisableAugmentationHook -----------
+2026-08-27 00:24:52,833   INFO  cfg.HOOK.DisableAugmentationHook.DISABLE_AUG_LIST: ['gt_sampling']
+2026-08-27 00:24:52,833   INFO  cfg.HOOK.DisableAugmentationHook.NUM_LAST_EPOCHS: 5
+2026-08-27 00:24:52,833   INFO  cfg.TAG: transfusion_lidar_carla
+2026-08-27 00:24:52,833   INFO  cfg.EXP_GROUP_PATH: nuscenes_models
+2026-08-27 00:24:52,840   INFO  ----------- Create dataloader & network & optimizer -----------
+2026-08-27 00:24:52,857   INFO  Database filter by min points car: 2283 => 2218
+2026-08-27 00:24:52,857   INFO  Database filter by min points truck: 408 => 391
+2026-08-27 00:24:52,857   INFO  Database filter by min points bus: 81 => 73
+2026-08-27 00:24:52,857   INFO  Database filter by min points barrier: 49 => 48
+2026-08-27 00:24:52,857   INFO  Database filter by min points motorcycle: 344 => 321
+2026-08-27 00:24:52,858   INFO  Database filter by min points bicycle: 207 => 203
+2026-08-27 00:24:52,858   INFO  Database filter by min points pedestrian: 2136 => 1594
+2026-08-27 00:24:52,858   INFO  Database filter by min points traffic_cone: 83 => 80
+2026-08-27 00:24:52,858   INFO  Loading NuScenes dataset
+2026-08-27 00:24:52,878   INFO  Total samples for NuScenes dataset: 400
+2026-08-27 00:24:52,879   INFO  Total samples after balanced resampling: 1504
+2026-08-27 00:24:53,187   INFO  ==> Loading parameters from checkpoint /workspace/OpenPCDet/pretrained/transfusion_lidar_nuscenes.pth to GPU
+2026-08-27 00:24:53,251   INFO  Not updated weight dense_head.heatmap_head.1.weight: torch.Size([8, 128, 3, 3])
+2026-08-27 00:24:53,251   INFO  Not updated weight dense_head.heatmap_head.1.bias: torch.Size([8])
+2026-08-27 00:24:53,251   INFO  Not updated weight dense_head.class_encoding.weight: torch.Size([128, 8, 1])
+2026-08-27 00:24:53,251   INFO  Not updated weight dense_head.prediction_head.heatmap.1.weight: torch.Size([8, 64, 1])
+2026-08-27 00:24:53,251   INFO  Not updated weight dense_head.prediction_head.heatmap.1.bias: torch.Size([8])
+2026-08-27 00:24:53,251   INFO  ==> Done (loaded 302/307)
+2026-08-27 00:24:53,254   INFO  ----------- Model TransFusion created, param count: 8303338 -----------
+2026-08-27 00:24:53,254   INFO  TransFusion(
+  (vfe): MeanVFE()
+  (backbone_3d): VoxelResBackBone8x(
+    (conv_input): SparseSequential(
+      (0): SubMConv3d(5, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (conv1): SparseSequential(
+      (0): SparseBasicBlock(
+        (conv1): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv2): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv3d(16, 32, kernel_size=[3, 3, 3], stride=[2, 2, 2], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (2): SparseBasicBlock(
+        (conv1): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv3): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv3d(32, 64, kernel_size=[3, 3, 3], stride=[2, 2, 2], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (2): SparseBasicBlock(
+        (conv1): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv4): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv3d(64, 128, kernel_size=[3, 3, 3], stride=[2, 2, 2], padding=[0, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (2): SparseBasicBlock(
+        (conv1): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv_out): SparseSequential(
+      (0): SparseConv3d(128, 128, kernel_size=[3, 1, 1], stride=[2, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (map_to_bev_module): HeightCompression()
+  (pfe): None
+  (backbone_2d): BaseBEVBackbone(
+    (blocks): ModuleList(
+      (0): Sequential(
+        (0): ZeroPad2d((1, 1, 1, 1))
+        (1): Conv2d(256, 128, kernel_size=(3, 3), stride=(1, 1), bias=False)
+        (2): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+        (13): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (14): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (15): ReLU()
+        (16): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (17): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (18): ReLU()
+      )
+      (1): Sequential(
+        (0): ZeroPad2d((1, 1, 1, 1))
+        (1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+        (13): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (14): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (15): ReLU()
+        (16): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (17): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (18): ReLU()
+      )
+    )
+    (deblocks): ModuleList(
+      (0): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(np.int64(1), np.int64(1)), stride=(np.int64(1), np.int64(1)), bias=False)
+        (1): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): ConvTranspose2d(256, 256, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+    )
+  )
+  (dense_head): TransFusionHead(
+    (loss_cls): SigmoidFocalClassificationLoss()
+    (loss_bbox): L1Loss()
+    (loss_heatmap): GaussianFocalLoss()
+    (shared_conv): Conv2d(512, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (heatmap_head): Sequential(
+      (0): BasicBlock2D(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (1): Conv2d(128, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (class_encoding): Conv1d(8, 128, kernel_size=(1,), stride=(1,))
+    (decoder): TransformerDecoderLayer(
+      (self_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+      )
+      (multihead_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+      )
+      (linear1): Linear(in_features=128, out_features=256, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+      (linear2): Linear(in_features=256, out_features=128, bias=True)
+      (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+      (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+      (norm3): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+      (dropout1): Dropout(p=0.1, inplace=False)
+      (dropout2): Dropout(p=0.1, inplace=False)
+      (dropout3): Dropout(p=0.1, inplace=False)
+      (self_posembed): PositionEmbeddingLearned(
+        (position_embedding_head): Sequential(
+          (0): Conv1d(2, 128, kernel_size=(1,), stride=(1,))
+          (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+          (3): Conv1d(128, 128, kernel_size=(1,), stride=(1,))
+        )
+      )
+      (cross_posembed): PositionEmbeddingLearned(
+        (position_embedding_head): Sequential(
+          (0): Conv1d(2, 128, kernel_size=(1,), stride=(1,))
+          (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+          (3): Conv1d(128, 128, kernel_size=(1,), stride=(1,))
+        )
+      )
+    )
+    (prediction_head): SeparateHead_Transfusion(
+      (center): Sequential(
+        (0): Sequential(
+          (0): Conv1d(128, 64, kernel_size=(1,), stride=(1,), bias=False)
+          (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (1): Conv1d(64, 2, kernel_size=(1,), stride=(1,))
+      )
+      (height): Sequential(
+        (0): Sequential(
+          (0): Conv1d(128, 64, kernel_size=(1,), stride=(1,), bias=False)
+          (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (1): Conv1d(64, 1, kernel_size=(1,), stride=(1,))
+      )
+      (dim): Sequential(
+        (0): Sequential(
+          (0): Conv1d(128, 64, kernel_size=(1,), stride=(1,), bias=False)
+          (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (1): Conv1d(64, 3, kernel_size=(1,), stride=(1,))
+      )
+      (rot): Sequential(
+        (0): Sequential(
+          (0): Conv1d(128, 64, kernel_size=(1,), stride=(1,), bias=False)
+          (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (1): Conv1d(64, 2, kernel_size=(1,), stride=(1,))
+      )
+      (vel): Sequential(
+        (0): Sequential(
+          (0): Conv1d(128, 64, kernel_size=(1,), stride=(1,), bias=False)
+          (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (1): Conv1d(64, 2, kernel_size=(1,), stride=(1,))
+      )
+      (heatmap): Sequential(
+        (0): Sequential(
+          (0): Conv1d(128, 64, kernel_size=(1,), stride=(1,), bias=False)
+          (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (1): Conv1d(64, 8, kernel_size=(1,), stride=(1,))
+      )
+    )
+  )
+  (point_head): None
+  (roi_head): None
+)
+2026-08-27 00:24:53,256   INFO  **********************Start training nuscenes_models/transfusion_lidar_carla(pretrained_run)**********************
+2026-08-27 00:25:25,485   INFO  Train:    1/6 ( 17%) [   0/376 (  0%)]  Loss: 1665. (1.67e+03)  LR: 1.000e-04  Time cost: 00:32/3:20:34 [00:32/20:03:29]  Acc_iter 1           Data time: 5.74(5.74)  Forward time: 26.27(26.27)  Batch time: 32.01(32.01)
+2026-08-27 00:26:06,929   INFO  Train:    1/6 ( 17%) [  49/376 ( 13%)]  Loss: 162.2 (780.)  LR: 1.065e-04  Time cost: 01:13/08:00 [01:13/54:02]  Acc_iter 50          Data time: 0.27(0.34)  Forward time: 0.72(1.13)  Batch time: 0.98(1.46)
+2026-08-27 00:26:51,271   INFO  Train:    1/6 ( 17%) [  99/376 ( 26%)]  Loss: 13.68 (420.)  LR: 1.265e-04  Time cost: 01:57/05:26 [01:58/42:20]  Acc_iter 100         Data time: 0.27(0.29)  Forward time: 0.46(0.89)  Batch time: 0.73(1.18)
+2026-08-27 00:27:34,704   INFO  Train:    1/6 ( 17%) [ 149/376 ( 40%)]  Loss: 5.969 (283.)  LR: 1.592e-04  Time cost: 02:41/04:03 [02:41/37:44]  Acc_iter 150         Data time: 0.28(0.28)  Forward time: 0.07(0.80)  Batch time: 0.35(1.07)
+2026-08-27 00:27:34,710   INFO  
+2026-08-27 00:28:17,061   INFO  Train:    1/6 ( 17%) [ 199/376 ( 53%)]  Loss: 3.748 (214.)  LR: 2.038e-04  Time cost: 03:23/03:00 [03:23/34:53]  Acc_iter 200         Data time: 0.33(0.27)  Forward time: 0.39(0.75)  Batch time: 0.72(1.02)
+2026-08-27 00:29:00,221   INFO  Train:    1/6 ( 17%) [ 249/376 ( 66%)]  Loss: 2.815 (172.)  LR: 2.589e-04  Time cost: 04:06/02:05 [04:06/33:00]  Acc_iter 250         Data time: 0.29(0.27)  Forward time: 0.91(0.72)  Batch time: 1.20(0.99)
+2026-08-27 00:29:43,853   INFO  Train:    1/6 ( 17%) [ 299/376 ( 80%)]  Loss: 1.729 (143.)  LR: 3.227e-04  Time cost: 04:50/01:14 [04:50/31:34]  Acc_iter 300         Data time: 0.20(0.26)  Forward time: 0.59(0.70)  Batch time: 0.79(0.97)
+2026-08-27 00:29:43,857   INFO  
+2026-08-27 00:29:53,590   INFO  Save latest model to /workspace/OpenPCDet/output/nuscenes_models/transfusion_lidar_carla/pretrained_run/ckpt/latest_model
+2026-08-27 00:30:26,435   INFO  Train:    1/6 ( 17%) [ 349/376 ( 93%)]  Loss: 1.335 (123.)  LR: 3.935e-04  Time cost: 05:32/00:25 [05:33/30:14]  Acc_iter 350         Data time: 0.27(0.26)  Forward time: 0.48(0.69)  Batch time: 0.75(0.95)
+2026-08-27 00:30:46,890   INFO  Train:    1/6 ( 17%) [ 375/376 (100%)]  Loss: 1.195 (115.)  LR: 4.323e-04  Time cost: 05:53/00:00 [05:53/29:28]  Acc_iter 376         Data time: 0.25(0.26)  Forward time: 0.55(0.68)  Batch time: 0.80(0.94)
+2026-08-27 00:30:47,084   INFO  Disable augmentations: ['gt_sampling']
+2026-08-27 00:30:51,012   INFO  Train:    2/6 ( 33%) [   0/376 (  0%)]  Loss: 2.035 (2.03)  LR: 4.338e-04  Time cost: 00:03/23:02 [05:57/1:55:12]  Acc_iter 377         Data time: 2.62(2.62)  Forward time: 0.86(0.86)  Batch time: 3.49(3.49)
+2026-08-27 00:31:09,069   INFO  Train:    2/6 ( 33%) [  23/376 (  6%)]  Loss: 1.307 (1.58)  LR: 4.689e-04  Time cost: 00:21/05:19 [06:15/28:01]  Acc_iter 400         Data time: 0.27(0.34)  Forward time: 0.36(0.55)  Batch time: 0.63(0.89)
+2026-08-27 00:31:45,590   INFO  Train:    2/6 ( 33%) [  73/376 ( 19%)]  Loss: 1.348 (1.45)  LR: 5.469e-04  Time cost: 00:58/03:58 [06:52/23:42]  Acc_iter 450         Data time: 0.26(0.29)  Forward time: 0.37(0.50)  Batch time: 0.62(0.78)
+2026-08-27 00:31:45,593   INFO  
+2026-08-27 00:32:21,190   INFO  Train:    2/6 ( 33%) [ 123/376 ( 33%)]  Loss: 1.037 (1.39)  LR: 6.249e-04  Time cost: 01:33/03:11 [07:27/22:09]  Acc_iter 500         Data time: 0.26(0.27)  Forward time: 0.42(0.49)  Batch time: 0.68(0.75)
+2026-08-27 00:32:57,878   INFO  Train:    2/6 ( 33%) [ 173/376 ( 46%)]  Loss: 0.9163 (1.33)  LR: 7.006e-04  Time cost: 02:10/02:32 [08:04/21:20]  Acc_iter 550         Data time: 0.26(0.26)  Forward time: 0.48(0.48)  Batch time: 0.74(0.75)
+2026-08-27 00:33:33,650   INFO  Train:    2/6 ( 33%) [ 223/376 ( 59%)]  Loss: 1.106 (1.28)  LR: 7.718e-04  Time cost: 02:46/01:53 [08:40/20:30]  Acc_iter 600         Data time: 0.26(0.26)  Forward time: 0.36(0.48)  Batch time: 0.62(0.74)
+2026-08-27 00:33:33,653   INFO  
+2026-08-27 00:34:09,406   INFO  Train:    2/6 ( 33%) [ 273/376 ( 73%)]  Loss: 1.143 (1.24)  LR: 8.363e-04  Time cost: 03:22/01:15 [09:16/19:45]  Acc_iter 650         Data time: 0.29(0.26)  Forward time: 0.50(0.48)  Batch time: 0.79(0.74)
+2026-08-27 00:34:45,572   INFO  Train:    2/6 ( 33%) [ 323/376 ( 86%)]  Loss: 0.9726 (1.21)  LR: 8.921e-04  Time cost: 03:58/00:38 [09:52/19:04]  Acc_iter 700         Data time: 0.25(0.26)  Forward time: 0.61(0.48)  Batch time: 0.86(0.73)
+2026-08-27 00:35:20,761   INFO  Train:    2/6 ( 33%) [ 373/376 ( 99%)]  Loss: 0.9014 (1.18)  LR: 9.376e-04  Time cost: 04:33/00:02 [10:27/18:21]  Acc_iter 750         Data time: 0.27(0.26)  Forward time: 0.41(0.47)  Batch time: 0.68(0.73)
+2026-08-27 00:35:20,764   INFO  
+2026-08-27 00:35:22,079   INFO  Train:    2/6 ( 33%) [ 375/376 (100%)]  Loss: 0.9671 (1.18)  LR: 9.392e-04  Time cost: 04:34/00:00 [10:28/18:19]  Acc_iter 752         Data time: 0.25(0.26)  Forward time: 0.41(0.47)  Batch time: 0.66(0.73)
+2026-08-27 00:35:25,504   INFO  Train:    3/6 ( 50%) [   0/376 (  0%)]  Loss: 1.209 (1.21)  LR: 9.400e-04  Time cost: 00:02/18:27 [10:32/1:13:49]  Acc_iter 753         Data time: 1.78(1.78)  Forward time: 0.97(0.97)  Batch time: 2.75(2.75)
+2026-08-27 00:35:59,921   INFO  Train:    3/6 ( 50%) [  47/376 ( 12%)]  Loss: 1.138 (1.08)  LR: 9.714e-04  Time cost: 00:37/04:16 [11:06/18:54]  Acc_iter 800         Data time: 0.29(0.29)  Forward time: 0.54(0.48)  Batch time: 0.83(0.77)
+2026-08-27 00:36:36,570   INFO  Train:    3/6 ( 50%) [  97/376 ( 26%)]  Loss: 0.8728 (1.09)  LR: 9.924e-04  Time cost: 01:14/03:30 [11:43/17:42]  Acc_iter 850         Data time: 0.27(0.27)  Forward time: 0.62(0.48)  Batch time: 0.90(0.75)
+2026-08-27 00:37:12,632   INFO  Train:    3/6 ( 50%) [ 147/376 ( 39%)]  Loss: 0.8537 (1.09)  LR: 1.000e-03  Time cost: 01:50/02:50 [12:19/16:49]  Acc_iter 900         Data time: 0.26(0.27)  Forward time: 0.40(0.47)  Batch time: 0.66(0.74)
+2026-08-27 00:37:12,635   INFO  
+2026-08-27 00:37:49,727   INFO  Train:    3/6 ( 50%) [ 197/376 ( 52%)]  Loss: 0.9705 (1.05)  LR: 9.970e-04  Time cost: 02:27/02:13 [12:56/16:11]  Acc_iter 950         Data time: 0.23(0.26)  Forward time: 0.24(0.48)  Batch time: 0.47(0.74)
+2026-08-27 00:38:26,145   INFO  Train:    3/6 ( 50%) [ 247/376 ( 66%)]  Loss: 0.9897 (1.03)  LR: 9.874e-04  Time cost: 03:03/01:35 [13:32/15:30]  Acc_iter 1000        Data time: 0.37(0.26)  Forward time: 0.35(0.48)  Batch time: 0.72(0.74)
+2026-08-27 00:39:02,773   INFO  Train:    3/6 ( 50%) [ 297/376 ( 79%)]  Loss: 1.090 (1.01)  LR: 9.712e-04  Time cost: 03:40/00:58 [14:09/14:51]  Acc_iter 1050        Data time: 0.27(0.26)  Forward time: 0.55(0.48)  Batch time: 0.82(0.74)
+2026-08-27 00:39:02,776   INFO  
+2026-08-27 00:39:39,756   INFO  Train:    3/6 ( 50%) [ 347/376 ( 92%)]  Loss: 0.8035 (0.981)  LR: 9.487e-04  Time cost: 04:17/00:21 [14:46/14:15]  Acc_iter 1100        Data time: 0.25(0.26)  Forward time: 0.64(0.48)  Batch time: 0.88(0.74)
+2026-08-27 00:39:59,197   INFO  Train:    3/6 ( 50%) [ 375/376 (100%)]  Loss: 0.8617 (0.976)  LR: 9.334e-04  Time cost: 04:36/00:00 [15:05/13:50]  Acc_iter 1128        Data time: 0.22(0.26)  Forward time: 0.28(0.48)  Batch time: 0.50(0.74)
+2026-08-27 00:40:03,148   INFO  Train:    4/6 ( 67%) [   0/376 (  0%)]  Loss: 0.9945 (0.994)  LR: 9.328e-04  Time cost: 00:03/21:57 [15:09/1:05:52]  Acc_iter 1129        Data time: 2.54(2.54)  Forward time: 0.75(0.75)  Batch time: 3.28(3.28)
+2026-08-27 00:40:19,593   INFO  Train:    4/6 ( 67%) [  21/376 (  6%)]  Loss: 0.7944 (0.796)  LR: 9.201e-04  Time cost: 00:19/05:21 [15:26/16:43]  Acc_iter 1150        Data time: 0.23(0.35)  Forward time: 0.57(0.54)  Batch time: 0.80(0.89)
+2026-08-27 00:40:57,255   INFO  Train:    4/6 ( 67%) [  71/376 ( 19%)]  Loss: 0.6424 (0.811)  LR: 8.859e-04  Time cost: 00:57/04:04 [16:03/14:05]  Acc_iter 1200        Data time: 0.23(0.28)  Forward time: 0.37(0.52)  Batch time: 0.60(0.80)
+2026-08-27 00:40:57,259   INFO  
+2026-08-27 00:41:34,654   INFO  Train:    4/6 ( 67%) [ 121/376 ( 32%)]  Loss: 0.6456 (0.808)  LR: 8.465e-04  Time cost: 01:35/03:18 [16:41/13:04]  Acc_iter 1250        Data time: 0.26(0.26)  Forward time: 0.60(0.51)  Batch time: 0.86(0.78)
+2026-08-27 00:42:11,416   INFO  Train:    4/6 ( 67%) [ 171/376 ( 45%)]  Loss: 0.7706 (0.792)  LR: 8.025e-04  Time cost: 02:11/02:37 [17:18/12:13]  Acc_iter 1300        Data time: 0.26(0.26)  Forward time: 0.47(0.51)  Batch time: 0.73(0.76)
+2026-08-27 00:42:47,341   INFO  Train:    4/6 ( 67%) [ 221/376 ( 59%)]  Loss: 0.7233 (0.779)  LR: 7.543e-04  Time cost: 02:47/01:57 [17:54/11:25]  Acc_iter 1350        Data time: 0.26(0.26)  Forward time: 0.38(0.50)  Batch time: 0.64(0.76)
+2026-08-27 00:42:47,343   INFO  
+2026-08-27 00:43:23,902   INFO  Train:    4/6 ( 67%) [ 271/376 ( 72%)]  Loss: 0.7427 (0.766)  LR: 7.028e-04  Time cost: 03:24/01:18 [18:30/10:43]  Acc_iter 1400        Data time: 0.27(0.25)  Forward time: 0.47(0.50)  Batch time: 0.75(0.75)
+2026-08-27 00:44:00,982   INFO  Train:    4/6 ( 67%) [ 321/376 ( 85%)]  Loss: 0.7409 (0.754)  LR: 6.485e-04  Time cost: 04:01/00:41 [19:07/10:04]  Acc_iter 1450        Data time: 0.25(0.25)  Forward time: 0.38(0.49)  Batch time: 0.63(0.75)
+2026-08-27 00:44:36,714   INFO  Train:    4/6 ( 67%) [ 371/376 ( 99%)]  Loss: 0.8182 (0.745)  LR: 5.923e-04  Time cost: 04:37/00:03 [19:43/09:23]  Acc_iter 1500        Data time: 0.25(0.25)  Forward time: 0.28(0.49)  Batch time: 0.53(0.74)
+2026-08-27 00:44:36,716   INFO  
+2026-08-27 00:44:38,901   INFO  Train:    4/6 ( 67%) [ 375/376 (100%)]  Loss: 0.5714 (0.743)  LR: 5.877e-04  Time cost: 04:39/00:00 [19:45/09:19]  Acc_iter 1504        Data time: 0.26(0.25)  Forward time: 0.32(0.49)  Batch time: 0.57(0.74)
+2026-08-27 00:44:43,007   INFO  Train:    5/6 ( 83%) [   0/376 (  0%)]  Loss: 0.7422 (0.742)  LR: 5.866e-04  Time cost: 00:03/23:10 [19:49/46:21]  Acc_iter 1505        Data time: 2.80(2.80)  Forward time: 0.70(0.70)  Batch time: 3.50(3.50)
+2026-08-27 00:45:16,297   INFO  Train:    5/6 ( 83%) [  45/376 ( 12%)]  Loss: 0.8749 (0.653)  LR: 5.348e-04  Time cost: 00:36/04:26 [20:23/09:28]  Acc_iter 1550        Data time: 0.26(0.29)  Forward time: 0.40(0.51)  Batch time: 0.66(0.80)
+2026-08-27 00:45:53,898   INFO  Train:    5/6 ( 83%) [  95/376 ( 25%)]  Loss: 0.8651 (0.647)  LR: 4.768e-04  Time cost: 01:14/03:38 [21:00/08:30]  Acc_iter 1600        Data time: 0.27(0.27)  Forward time: 0.61(0.50)  Batch time: 0.88(0.77)
+2026-08-27 00:46:29,918   INFO  Train:    5/6 ( 83%) [ 145/376 ( 39%)]  Loss: 0.6044 (0.654)  LR: 4.192e-04  Time cost: 01:50/02:55 [21:36/07:39]  Acc_iter 1650        Data time: 0.27(0.26)  Forward time: 0.56(0.49)  Batch time: 0.83(0.76)
+2026-08-27 00:46:29,921   INFO  
+2026-08-27 00:47:06,509   INFO  Train:    5/6 ( 83%) [ 195/376 ( 52%)]  Loss: 0.5700 (0.640)  LR: 3.626e-04  Time cost: 02:27/02:15 [22:13/06:58]  Acc_iter 1700        Data time: 0.28(0.26)  Forward time: 0.69(0.49)  Batch time: 0.97(0.75)
+2026-08-27 00:47:42,203   INFO  Train:    5/6 ( 83%) [ 245/376 ( 65%)]  Loss: 0.7810 (0.626)  LR: 3.079e-04  Time cost: 03:02/01:37 [22:48/06:16]  Acc_iter 1750        Data time: 0.25(0.25)  Forward time: 0.36(0.49)  Batch time: 0.62(0.74)
+2026-08-27 00:48:19,101   INFO  Train:    5/6 ( 83%) [ 295/376 ( 78%)]  Loss: 0.6425 (0.614)  LR: 2.557e-04  Time cost: 03:39/01:00 [23:25/05:39]  Acc_iter 1800        Data time: 0.29(0.26)  Forward time: 0.28(0.49)  Batch time: 0.56(0.74)
+2026-08-27 00:48:19,103   INFO  
+2026-08-27 00:48:55,253   INFO  Train:    5/6 ( 83%) [ 345/376 ( 92%)]  Loss: 0.6958 (0.601)  LR: 2.069e-04  Time cost: 04:15/00:22 [24:01/05:01]  Acc_iter 1850        Data time: 0.27(0.26)  Forward time: 0.39(0.48)  Batch time: 0.66(0.74)
+2026-08-27 00:49:15,726   INFO  Train:    5/6 ( 83%) [ 375/376 (100%)]  Loss: 0.3939 (0.598)  LR: 1.794e-04  Time cost: 04:36/00:00 [24:22/04:37]  Acc_iter 1880        Data time: 0.24(0.25)  Forward time: 0.31(0.48)  Batch time: 0.54(0.73)
+2026-08-27 00:49:19,678   INFO  Train:    6/6 (100%) [   0/376 (  0%)]  Loss: 0.5566 (0.557)  LR: 1.785e-04  Time cost: 00:03/22:04 [24:26/22:04]  Acc_iter 1881        Data time: 2.57(2.57)  Forward time: 0.72(0.72)  Batch time: 3.29(3.29)
+2026-08-27 00:49:34,640   INFO  Train:    6/6 (100%) [  19/376 (  5%)]  Loss: 0.5067 (0.615)  LR: 1.620e-04  Time cost: 00:18/05:29 [24:41/05:29]  Acc_iter 1900        Data time: 0.22(0.37)  Forward time: 0.54(0.54)  Batch time: 0.76(0.91)
+2026-08-27 00:50:10,595   INFO  Train:    6/6 (100%) [  69/376 ( 18%)]  Loss: 0.4822 (0.572)  LR: 1.216e-04  Time cost: 00:54/03:58 [25:17/03:58]  Acc_iter 1950        Data time: 0.23(0.29)  Forward time: 0.35(0.48)  Batch time: 0.57(0.77)
+2026-08-27 00:50:10,598   INFO  
+2026-08-27 00:50:47,236   INFO  Train:    6/6 (100%) [ 119/376 ( 32%)]  Loss: 0.5315 (0.545)  LR: 8.630e-05  Time cost: 01:31/03:15 [25:53/03:15]  Acc_iter 2000        Data time: 0.25(0.28)  Forward time: 0.49(0.48)  Batch time: 0.74(0.76)
+2026-08-27 00:51:23,484   INFO  Train:    6/6 (100%) [ 169/376 ( 45%)]  Loss: 0.5992 (0.540)  LR: 5.658e-05  Time cost: 02:07/02:35 [26:30/02:35]  Acc_iter 2050        Data time: 0.26(0.27)  Forward time: 0.39(0.48)  Batch time: 0.65(0.75)
+2026-08-27 00:51:59,794   INFO  Train:    6/6 (100%) [ 219/376 ( 58%)]  Loss: 0.3864 (0.532)  LR: 3.282e-05  Time cost: 02:43/01:56 [27:06/01:56]  Acc_iter 2100        Data time: 0.25(0.26)  Forward time: 0.48(0.48)  Batch time: 0.73(0.74)
+2026-08-27 00:51:59,797   INFO  
+2026-08-27 00:52:35,686   INFO  Train:    6/6 (100%) [ 269/376 ( 72%)]  Loss: 0.4729 (0.529)  LR: 1.534e-05  Time cost: 03:19/01:19 [27:42/01:19]  Acc_iter 2150        Data time: 0.27(0.26)  Forward time: 0.58(0.48)  Batch time: 0.85(0.74)
+2026-08-27 00:53:12,082   INFO  Train:    6/6 (100%) [ 319/376 ( 85%)]  Loss: 0.3665 (0.525)  LR: 4.376e-06  Time cost: 03:55/00:42 [28:18/00:42]  Acc_iter 2200        Data time: 0.26(0.26)  Forward time: 0.48(0.48)  Batch time: 0.74(0.74)
+2026-08-27 00:53:48,551   INFO  Train:    6/6 (100%) [ 369/376 ( 98%)]  Loss: 0.4717 (0.520)  LR: 7.595e-08  Time cost: 04:32/00:05 [28:55/00:05]  Acc_iter 2250        Data time: 0.21(0.26)  Forward time: 0.29(0.48)  Batch time: 0.50(0.74)
+2026-08-27 00:53:48,554   INFO  
+2026-08-27 00:53:51,109   INFO  Train:    6/6 (100%) [ 375/376 (100%)]  Loss: 0.4345 (0.519)  LR: 1.135e-08  Time cost: 04:34/00:00 [28:57/00:00]  Acc_iter 2256        Data time: 0.23(0.26)  Forward time: 0.31(0.47)  Batch time: 0.55(0.73)
+2026-08-27 00:53:51,497   INFO  **********************End training nuscenes_models/transfusion_lidar_carla(pretrained_run)**********************
+
+
+
+2026-08-27 00:53:51,497   INFO  **********************Start evaluation nuscenes_models/transfusion_lidar_carla(pretrained_run)**********************
+2026-08-27 00:53:51,498   INFO  Loading NuScenes dataset
+2026-08-27 00:53:51,503   INFO  Total samples for NuScenes dataset: 100
+2026-08-27 00:53:51,509   INFO  ==> Loading parameters from checkpoint /workspace/OpenPCDet/output/nuscenes_models/transfusion_lidar_carla/pretrained_run/ckpt/checkpoint_epoch_6.pth to GPU
+2026-08-27 00:53:51,653   INFO  ==> Checkpoint trained from version: pcdet+0.6.0+233f849
+2026-08-27 00:53:51,659   INFO  ==> Done (loaded 307/307)
+2026-08-27 00:53:51,661   INFO  *************** EPOCH 6 EVALUATION *****************
+2026-08-27 00:54:05,716   INFO  *************** Performance of EPOCH 6 *****************
+2026-08-27 00:54:05,716   INFO  Generate label finished(sec_per_example: 0.1405 second).
+2026-08-27 00:54:05,716   INFO  recall_roi_0.3: 0.000000
+2026-08-27 00:54:05,716   INFO  recall_rcnn_0.3: 0.786885
+2026-08-27 00:54:05,716   INFO  recall_roi_0.5: 0.000000
+2026-08-27 00:54:05,716   INFO  recall_rcnn_0.5: 0.687325
+2026-08-27 00:54:05,716   INFO  recall_roi_0.7: 0.000000
+2026-08-27 00:54:05,716   INFO  recall_rcnn_0.7: 0.424630
+2026-08-27 00:54:05,716   INFO  Average predicted number of objects(100 samples): 200.000
+2026-08-27 00:54:08,034   INFO  The predictions of NuScenes have been saved to /workspace/OpenPCDet/output/nuscenes_models/transfusion_lidar_carla/pretrained_run/eval/eval_with_train/epoch_6/val/final_result/data/results_nusc.json
+2026-08-27 00:54:08,782   INFO  ----------------Nuscene detection_cvpr_2019 results-----------------
+***car error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.15, 0.15, 0.09, 0.90, 0.07 | 90.24, 96.25, 97.46, 97.62 | mean AP: 0.9539447691156181
+***truck error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.14, 0.13, 0.05, 0.66, 0.20 | 88.20, 92.98, 92.98, 92.98 | mean AP: 0.9178501650336998
+***bus error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.39, 0.29, 1.16, 1.69, 0.00 | 38.30, 55.97, 74.40, 74.40 | mean AP: 0.6076770929189782
+***barrier error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.40, 0.70, 0.37, nan, nan | 0.23, 15.10, 15.10, 15.10 | mean AP: 0.11384259649081657
+***motorcycle error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.11, 0.13, 0.30, 0.86, 1.00 | 91.75, 91.75, 91.75, 91.75 | mean AP: 0.9174670062791521
+***bicycle error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.09, 0.18, 0.12, 0.36, 1.00 | 90.24, 90.24, 90.24, 90.32 | mean AP: 0.9025927903555977
+***pedestrian error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.06, 0.09, 0.07, 0.44, 0.00 | 96.54, 96.54, 96.54, 96.63 | mean AP: 0.9656073129628738
+***traffic_cone error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.04, 0.28, nan, nan, nan | 54.45, 54.45, 54.45, 54.45 | mean AP: 0.5444978723291316
+--------------average performance-------------
+trans_err:	 0.3373
+scale_err:	 0.3953
+orient_err:	 0.4632
+vel_err:	 0.8651
+attr_err:	 0.5338
+mAP:	 0.5923
+NDS:	 0.5367
+
+2026-08-27 00:54:08,782   INFO  Result is saved to /workspace/OpenPCDet/output/nuscenes_models/transfusion_lidar_carla/pretrained_run/eval/eval_with_train/epoch_6/val
+2026-08-27 00:54:08,782   INFO  ****************Evaluation done.*****************
+2026-08-27 00:54:08,787   INFO  Epoch 6 has been evaluated
+2026-08-27 00:54:37,962   INFO  **********************End evaluation nuscenes_models/transfusion_lidar_carla(pretrained_run)**********************
