@@ -10,4 +10,5 @@ venv/
 *.zip
 *.bin
 **checkpoint_epoch_*.pth
+!output/nuscenes_models/transfusion_lidar_carla/pretrained_run/ckpt/checkpoint_epoch_6.pth
 version.py
